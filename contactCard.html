@@ -3,22 +3,22 @@
 		<head>
 			<meta charset = "UTF-8">
 			<title>Contact Card</title>
+			<link rel="stylesheet" href="contactCard.css">
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 			</script> 
 			<script>
-				function newDivInteract(){
-					$("div").click(function(){
-						$(this).html("<p>" + $("#description").val() + "</p>");
-
-					});
-
-				}
 
 				$(document).ready(function(){
 				console.log("JQ is ready");
 
-				$("form").submit(function(){
-					// e.preventDefault();
+				$("body").on("click","a",function(){
+						var description = $(this).siblings("p").html();
+						$(this).parent().html(description);
+						// $(this).css("border")
+					});
+
+				$("form").submit(function(e){
+					e.preventDefault();
 					var firstName= $("#firstName").val();
 					var lastName= $("#lastName").val();
 					var description= $("#description").val();
@@ -27,14 +27,19 @@
 					//using template literals
 
 					var formInfo = `
-							<h3>Click for description</h3>
+						<div>
 							<h1>${firstName}</h1>
 							<h1>${lastName}</h1>
-						
-						
+							<a href="#">Click for description</a>
+							
+							<p>${description}</p>
+							
+						</div>
 						`;
-						$("div").append(formInfo);
-						newDivInteract();
+						$("#cards").append(formInfo).css;
+						$("p").hide();
+
+						
 
 
 
@@ -42,10 +47,10 @@
 				return false
 			});
 
-				$(".add").click(function(){
-					var data = $("form").submit();
-					console.log(data);
-				});
+				// $(".add").click(function(){
+				// 	var data = $("form").submit();
+				// 	console.log(data);
+				// });
 
 			});
 
@@ -59,7 +64,7 @@
 				<button id="add" type="submit">Add User</button>
 			</form>
 
-			<div>
+			<div id="cards">
 			</div>	
 		</body>
 	</html>
