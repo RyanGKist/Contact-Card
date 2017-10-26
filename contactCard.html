@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+	<html lang = "en">
+		<head>
+			<meta charset = "UTF-8">
+			<title>Contact Card</title>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+			</script> 
+			<script>
+				function newDivInteract(){
+					$("div").click(function(){
+						$(this).html("<p>" + $("#description").val() + "</p>");
+
+					});
+
+				}
+
+				$(document).ready(function(){
+				console.log("JQ is ready");
+
+				$("form").submit(function(){
+					// e.preventDefault();
+					var firstName= $("#firstName").val();
+					var lastName= $("#lastName").val();
+					var description= $("#description").val();
+					console.log(firstName, lastName, description);
+					
+					//using template literals
+
+					var formInfo = `
+							<h3>Click for description</h3>
+							<h1>${firstName}</h1>
+							<h1>${lastName}</h1>
+						
+						
+						`;
+						$("div").append(formInfo);
+						newDivInteract();
+
+
+
+
+				return false
+			});
+
+				$(".add").click(function(){
+					var data = $("form").submit();
+					console.log(data);
+				});
+
+			});
+
+			</script>
+		</head>
+		<body>
+			<form action="#/">
+				First Name: <input id="firstName"  type="text" name="firstName"><br>
+				Last Name: <input id="lastName"  type="text" name="lastName"><br>
+				Description: <textarea id="description"  type="text" name="description"></textarea><br>
+				<button id="add" type="submit">Add User</button>
+			</form>
+
+			<div>
+			</div>	
+		</body>
+	</html>
