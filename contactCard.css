@@ -1,7 +1,11 @@
-div{
+#cards{
 	border:1px solid black;
 	text-align:right;
 	background-color:red;
 	color:white;
-
+	margin-left:600px;
+}
+div{
+	margin-left:400px;
+	border-bottom:1px solid black	;
 }
